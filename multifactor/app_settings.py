@@ -16,6 +16,7 @@ mf_settings['TOKEN_ISSUER_NAME'] = mf_settings.get('TOKEN_ISSUER_NAME', 'Django 
 mf_settings['U2F_APPID'] = mf_settings.get('U2F_APPID', 'https://example.com')
 
 mf_settings['FACTORS'] = mf_settings.get('FACTORS', ['FIDO2', 'U2F', 'TOTP'])
+mf_settings['DISABLE'] = mf_settings.get('DISABLE', False)
 
 mf_settings['FALLBACKS'] = mf_settings.get('FALLBACKS', {
     'email': (lambda user: user.email, 'multifactor.factors.fallback.send_email'),

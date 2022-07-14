@@ -47,6 +47,8 @@ Add `multifactor` to `settings.INSTALLED_APPS` and override whichever setting yo
         # Optional Keys - Only include these keys if you wish to deviate from the default actions
         'LOGIN_MESSAGE': '<a href="{}">Manage multifactor settings</a>.',  # {OPTIONAL} When set overloads the default post-login message.
         'SHOW_LOGIN_MESSAGE': False,  # {OPTIONAL} <bool> Set to False to not create a post-login message
+        # DISABLE <bool> (only has effect when DEBUG is True) When True, disables multifactor protection (useful for Integration/Unit testing).
+        'DISABLE': False
     }
 
 Ensure that [`django.contrib.messages`](https://docs.djangoproject.com/en/2.2/ref/contrib/messages/) is installed.

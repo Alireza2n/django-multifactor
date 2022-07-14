@@ -1,3 +1,4 @@
+import logging
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import render as dj_render, redirect
@@ -9,6 +10,8 @@ import random
 
 from .app_settings import mf_settings
 from .models import UserKey, DisabledFallback
+
+logger = logging.getLogger(__name__)
 
 
 def has_multifactor(request):
@@ -82,3 +85,11 @@ def login(request):
 
     # punch back to the login URL and let it decide what to do with you
     return redirect(settings.LOGIN_URL)
+
+
+def is_mf_disabled():
+    is_disabled = all((mf_settings['DISABLE'] is True, settings.DEBUG is True))
+    if is_disabled is True:
+        logger.warning(f'MULTIFACTOR.DISABLE and DEBUG are True, skipping MultiFactor protection.')
+        return is_disabled
+    return False
